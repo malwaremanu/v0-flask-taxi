@@ -160,7 +160,7 @@ App.Dashboard = {
     sendMessage(contactId, templateId) {
         if (contactId && templateId) {
             // This still redirects, which is the desired behavior for sending a WhatsApp message.
-            this.fetchData(); // Refresh list
+            // this.fetchData(); // Refresh list
             console.log(`Sending message to contact ID ${contactId} with template ID ${templateId}`);
             window.location.href = `/send/${contactId}/${templateId}`;
         }
