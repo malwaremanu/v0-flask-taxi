@@ -53,12 +53,12 @@ def handle_contacts():
         data = request.get_json()
         numbers_str = data.get('numbers')
         if numbers_str:
-
+            # print(numbers_str.split('\n'))
             if "," in numbers_str:
                 numbers = [num.strip() for num in numbers_str.split(',') if num.strip().isdigit()] 
 
             elif "\n" in numbers_str:
-                numbers = [num.strip() for num in numbers_str.split(',') if num.strip().isdigit()] 
+                numbers = [num.strip() for num in numbers_str.split('\n') if num.strip().isdigit()] 
             
             else:
                 numbers = []
@@ -101,7 +101,7 @@ def send_message(contact_id, quickreply_id):
     message_text = urllib.parse.quote(quickreply['text'], encoding='utf-8')
     # Using https://wa.me/ is more robust across desktop and mobile devices
     #whatsapp_url = f"https://wa.me/{phone_number}?text={message_text}"
-    whatsapp_url = f"whatsapp://send/?phone={phone_number}&text={message_text}"
+    whatsapp_url = f"whatsapp://send/?phone={phone_number}&text=🙏 {phone_number}, {message_text}"
     return redirect(whatsapp_url)
 
 
@@ -152,7 +152,7 @@ def handle_quickreply_by_id(quickreply_id):
 #     app.run(host='0.0.0.0', port=80, debug=True)
 import os     
 def main():
-    app.run(port=int(os.environ.get('PORT', 80)))
+    app.run(port=int(os.environ.get('PORT', 50001)))
 
 if __name__ == "__main__":
     main()
