@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="pb-2 mb-4 border-b border-gray-300">
+    <h2 class="text-2xl font-bold text-gray-800">Dashboard</h2>
+</div>
+
+<div class="bg-white shadow-md rounded-lg mb-6">
+    <div class="p-4">
+        <h3 class="font-semibold text-gray-700 mb-2">Add New Contacts</h3>
+        <form id="addContactForm">
+            <div class="mb-4">
+                <label for="numbers" class="sr-only">Phone Numbers</label>
+                <textarea class="w-full rounded-md border border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" id="numbers" name="numbers" rows="3" placeholder="Enter comma-separated phone numbers..."></textarea>
+                <p class="mt-2 text-xs text-gray-500">Enter one or more numbers separated by a comma.</p>
+            </div>
+            <button type="submit" class="w-full py-2 px-4 border border-transparent shadow-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Add Contacts</button>
+        </form>
+    </div>
+</div>
+
+<div class="mt-8">
+    <div class="border-b border-gray-200">
+        <nav class="-mb-px flex space-x-8" aria-label="Tabs">
+            <button id="tab-active" class="border-indigo-500 text-indigo-600 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
+                Active
+            </button>
+            <button id="tab-archived" class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
+                Archived
+            </button>
+        </nav>
+    </div>
+</div>
+
+<div id="contacts-list" class="space-y-4">
+    <!-- Contacts will be loaded here by JavaScript -->
+</div>
+{% endblock %}
