@@ -12,20 +12,30 @@ next_contact_id = 1
 next_quickreply_id = 1
 
 d = """
-🚖 Hello!
-Now book your rides quickly and affordably with our new [App Name] Taxi App 🚕✨
-✅ Fast & reliable pickups
-✅ Affordable fares
-✅ 24/7 service
-✅ Track your driver live on map
-Download now and enjoy your first ride at a special discount! 🎉
-👉 [Download Link]
-Need a ride? We’re just one tap away!
+🙏 शोक संवेदना सहित 🙏
+आपके परिवार में हुए दुखद निधन की ख़बर सुनकर हमें गहरा दुःख हुआ।
+ईश्वर दिवंगत आत्मा को शांति दे और आपको इस कठिन समय में धैर्य एवं शक्ति प्रदान करे।
+
+यदि आप हरिद्वार या किसी अन्य स्थान पर अंतिम संस्कार हेतु यात्रा पर जा रहे हैं, तो
+NAVEEN TAXI SERVICE – JAIPUR
+आपकी हर संभव सहायता के लिए सदैव तत्पर है।
+
+🚘 सेवाएँ:
+* जयपुर से हरिद्वार, दिल्ली, आगरा, अजमेर, कोटा, उदयपुर आदि के लिए One Way / Round Trip टैक्सी सेवा
+* साफ़-सुथरी गाड़ियाँ व अनुभवी ड्राइवर्स
+* 📦 पार्सल सेवा (24×7) – मिठाई, कपड़े, दस्तावेज़ आदि
+* 👨‍✈️ यदि आपकी स्वयं की गाड़ी है, तो हम डेली वेज बेसिस पर अस्थायी ड्राइवर (Temporary Driver) भी उपलब्ध कराते हैं
+
+📞 संपर्क करें:
+9460145006 | 9521890614
+
+🙏 हम आपकी यात्रा को सुरक्षित, सहज और समय पर पूरा कराने का वचन देते हैं।
+ईश्वर आपके परिवार को शक्ति और शांति प्रदान करें।
 """
 # Add some sample data for demonstration
 if not quickreplies: # To prevent duplication on reload
-    quickreplies.append({'id': 1, 'name': 'Welcome', 'text': 'Hello!\nWelcome to our service.'})
-    quickreplies.append({'id': 2, 'name': 'Offer', 'text': d})
+    quickreplies.append({'id': 1, 'name': 'Welcome', 'text': 'Hello!\nWelcome to AVEEN TAXI SERVICE JAIPUR.'})
+    quickreplies.append({'id': 2, 'name': 'death', 'text': d})
     next_quickreply_id = 3
     contacts.append({'id': 1, 'number': '9024343890', 'status': 'New'})
     next_contact_id = 2
@@ -43,7 +53,16 @@ def handle_contacts():
         data = request.get_json()
         numbers_str = data.get('numbers')
         if numbers_str:
-            numbers = [num.strip() for num in numbers_str.split(',') if num.strip().isdigit()]
+
+            if "," in numbers_str:
+                numbers = [num.strip() for num in numbers_str.split(',') if num.strip().isdigit()] 
+
+            if "\n" in numbers_str:
+                numbers = [num.strip() for num in numbers_str.split(',') if num.strip().isdigit()] 
+            
+            else:
+                numbers = []
+
             added_count = 0
             for number in numbers:
 
@@ -55,7 +74,7 @@ def handle_contacts():
                     next_contact_id += 1
                     added_count += 1
             return jsonify({'message': f'Added {added_count} new contact(s).'}), 200
-        return jsonify({'error': 'No numbers provided'}), 400
+        return jsonify({'error': 'No numbers provided, please use proper format.'}), 400
     
     # GET request
     return jsonify({'contacts': contacts, 'quickreplies': quickreplies})
