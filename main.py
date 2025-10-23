@@ -57,7 +57,7 @@ def handle_contacts():
             if "," in numbers_str:
                 numbers = [num.strip() for num in numbers_str.split(',') if num.strip().isdigit()] 
 
-            if "\n" in numbers_str:
+            elif "\n" in numbers_str:
                 numbers = [num.strip() for num in numbers_str.split(',') if num.strip().isdigit()] 
             
             else:
